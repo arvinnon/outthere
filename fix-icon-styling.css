@@ -1,0 +1,27 @@
+/* ============================================
+   FEATURE ICON STYLING - FIXED FOR IMAGES
+   ============================================ */
+
+.feature-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 25px;
+    display: block;
+    object-fit: contain;
+    transition: var(--transition);
+    filter: invert(41%) sepia(70%) saturate(230%) hue-rotate(10deg) brightness(100%);
+}
+
+.feature-card:hover .feature-icon {
+    filter: invert(39%) sepia(34%) saturate(130%) hue-rotate(170deg) brightness(100%);
+    transform: scale(1.15);
+}
+
+/* Remove SVG styling that doesn't apply */
+.feature-icon svg {
+    width: auto;
+    height: auto;
+    stroke-linecap: auto;
+    stroke-linejoin: auto;
+    color: auto;
+}
