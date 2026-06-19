@@ -412,6 +412,67 @@ p {
 }
 
 /* ============================================
+   PRIVACY POLICY
+   ============================================ */
+.privacy-page {
+    background-color: var(--sand-beige);
+}
+
+.privacy-hero {
+    padding: 110px 0 70px;
+    background-color: var(--forest-green);
+    color: var(--sand-beige);
+}
+
+.privacy-kicker {
+    color: var(--adventure-orange);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.privacy-hero h1 {
+    color: var(--sand-beige);
+    margin-bottom: 12px;
+}
+
+.privacy-updated {
+    color: rgba(232, 226, 213, 0.78);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.privacy-content {
+    padding: 70px 0 100px;
+}
+
+.privacy-container {
+    max-width: 820px;
+}
+
+.privacy-content h2 {
+    color: var(--forest-green);
+    font-size: 1.8rem;
+    margin: 42px 0 12px;
+}
+
+.privacy-content p {
+    margin-bottom: 16px;
+}
+
+.privacy-content ul {
+    margin: 0 0 20px 22px;
+    color: rgba(26, 26, 26, 0.8);
+}
+
+.privacy-content li {
+    margin-bottom: 8px;
+    padding-left: 4px;
+}
+
+/* ============================================
    FOOTER
    ============================================ */
 .footer {
@@ -483,6 +544,23 @@ p {
     margin: 0 auto;
     padding: 0 40px;
     text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: rgba(232, 226, 213, 0.72);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--adventure-orange);
 }
 
 .footer-bottom p {
@@ -673,6 +751,18 @@ p {
         padding: 60px 0;
     }
 
+    .privacy-hero {
+        padding: 80px 0 50px;
+    }
+
+    .privacy-content {
+        padding: 50px 0 70px;
+    }
+
+    .privacy-content h2 {
+        font-size: 1.5rem;
+    }
+
     .cta-content h2 {
         font-size: 2rem;
     }
@@ -770,6 +860,19 @@ p {
 
     .cta-section {
         padding: 40px 0;
+    }
+
+    .privacy-hero {
+        padding: 60px 0 40px;
+    }
+
+    .privacy-content {
+        padding: 40px 0 60px;
+    }
+
+    .privacy-content h2 {
+        font-size: 1.35rem;
+        margin-top: 34px;
     }
 
     .cta-content h2 {
