@@ -3,39 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Outthere - Discover places, experiences, and journeys beyond the ordinary. Premium adventure platform for modern explorers.">
-    <meta name="keywords" content="adventure, travel, exploration, journeys, experiences">
-    <meta name="theme-color" content="#1E3A2F">
-    <meta property="og:title" content="Outthere - Further than Comfort">
-    <meta property="og:description" content="Discover places, experiences, and journeys beyond the ordinary.">
+    <meta name="description" content="OutThere - A call to those who seek more. Adventures, freedom, and moments that matter. Further than comfort.">
+    <meta name="keywords" content="adventure, outdoors, hiking, exploration, Philippines, Mt. Pulag, Zambales, Sierra Madre">
+    <meta name="theme-color" content="#1A1A1A">
+    <meta property="og:title" content="OutThere - Further Than Comfort">
+    <meta property="og:description" content="A call to those who seek more. Go out. Go beyond.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <title>OutThere - Further than Comfort</title>
-<!-- FAVICON LINKS -->
+    <title>OutThere - Further Than Comfort</title>
+    <script>
+        // Apply saved or system theme before first paint to avoid a flash
+        (function () {
+            var saved = null;
+            try { saved = localStorage.getItem('theme'); } catch (e) {}
+            var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-    <meta name="theme-color" content="#1E3A2F">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar navbar-overlay">
         <div class="nav-wrapper">
-            <div class="logo">
-                <img src="assets/logo.png" alt="Outthere Logo" class="logo-image">
-                <span class="logo-text">OutThere</span>
-            </div>
+            <a class="logo" href="#hero" aria-label="OutThere home">
+                <img src="assets/logo.png" alt="" class="logo-image">
+                <span class="logo-lockup">
+                    <span class="logo-text">OutThere</span>
+                    <span class="logo-tagline">Further than comfort.</span>
+                </span>
+            </a>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#about">About</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#cta">Get Started</a></li>
+                <li><a href="#values">Values</a></li>
+                <li><a href="#app">App</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=61587238439117" target="_blank" rel="noopener" class="nav-cta">Join</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode">
+                    <i class="fas fa-sun" aria-hidden="true"></i>
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
+                <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
@@ -43,97 +64,216 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-background">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80" alt="Mountain landscape">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2000&q=80" alt="Sunrise over a sea of mountains">
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content">
-            <h1 class="hero-title">Further than Comfort</h1>
-            <button class="btn btn-primary" onclick="scrollToSection('cta')">Start Exploring</button>
+            <img src="assets/logo.png" alt="" class="hero-mark">
+            <h1 class="hero-title">OutThere</h1>
+            <p class="hero-tagline">Further than comfort.</p>
+            <div class="hero-actions">
+                <a href="https://www.facebook.com/profile.php?id=61587238439117" target="_blank" rel="noopener" class="btn btn-primary">Join the Movement</a>
+                <a href="#app" class="btn btn-outline">Get the App</a>
+            </div>
+        </div>
+        <a href="#about" class="scroll-cue" aria-label="Scroll to next section">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- Our Why + Values -->
+    <section class="why" id="about">
+        <div class="container why-grid">
+            <div class="why-image reveal">
+                <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=900&q=80" alt="Hiker looking out over a mountain ridge" loading="lazy" width="900" height="1100">
+            </div>
+            <div class="why-story reveal">
+                <p class="eyebrow">Our Why</p>
+                <h2>Beyond comfort,<br>beyond limits.</h2>
+                <p>
+                    OutThere is a call to those who seek more&mdash;more adventures, more freedom, more moments that matter.
+                    We exist to inspire and equip you to step outside, go beyond limits, and find what you're capable of.
+                </p>
+                <p>
+                    We're building for those who crave depth over hashtags&mdash;people seeking genuine connection with
+                    the world and themselves.
+                </p>
+                <p class="callout">Go out. Go beyond.</p>
+            </div>
+            <div class="why-values" id="values">
+                <p class="eyebrow">Our Values</p>
+                <ul class="values-list">
+                    <li class="value reveal">
+                        <span class="value-icon" style="--icon: url('assets/icons/mountain.png')" aria-hidden="true"></span>
+                        <div>
+                            <h3>Exploration</h3>
+                            <p>Seek more. Wander often.</p>
+                        </div>
+                    </li>
+                    <li class="value reveal">
+                        <span class="value-icon" style="--icon: url('assets/icons/arrows.png')" aria-hidden="true"></span>
+                        <div>
+                            <h3>Freedom</h3>
+                            <p>Live outside the ordinary.</p>
+                        </div>
+                    </li>
+                    <li class="value reveal">
+                        <span class="value-icon" style="--icon: url('assets/icons/water-waves.png')" aria-hidden="true"></span>
+                        <div>
+                            <h3>Connection</h3>
+                            <p>To nature, to people, to what matters.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
+    <!-- Gear Teaser -->
+    <section class="gear topo" id="gear">
         <div class="container">
-            <div class="about-wrapper">
-                <div class="about-text">
-                    <h2>Brand Story</h2>
-                    <p>
-                        OutThere is a call to those who seek more, more adventures, more freedom, more moments that matter. We exist to
-                        inspire and equip you to step outside, go beyond limits, and find what you're capable of.
-                    </p>
-                    <p>
-                        We're building a platform for those who crave depth over hashtags—travelers seeking genuine connection with the world 
-                        and themselves. Join us as we redefine what it means to explore.
-                    </p>
+            <div class="section-head">
+                <div>
+                    <p class="eyebrow">Featured Gear</p>
+                    <h2>Gear for the journey.</h2>
                 </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80" alt="Adventure team">
-                </div>
+                <span class="section-note">Built for adventure. Made to last.</span>
+            </div>
+            <div class="gear-row">
+                <article class="gear-card reveal">
+                    <div class="gear-swatch swatch-olive">
+                        <img src="assets/logo.png" alt="" loading="lazy">
+                        <span class="gear-tag">Coming soon</span>
+                    </div>
+                    <h3>OutThere Backpack</h3>
+                    <p>Trail-ready daypack</p>
+                </article>
+                <article class="gear-card reveal">
+                    <div class="gear-swatch swatch-forest">
+                        <img src="assets/logo.png" alt="" loading="lazy">
+                        <span class="gear-tag">Coming soon</span>
+                    </div>
+                    <h3>OutThere Bottle</h3>
+                    <p>Insulated steel flask</p>
+                </article>
+                <article class="gear-card reveal">
+                    <div class="gear-swatch swatch-charcoal">
+                        <img src="assets/logo.png" alt="" loading="lazy">
+                        <span class="gear-tag">Coming soon</span>
+                    </div>
+                    <h3>OutThere Mug</h3>
+                    <p>Enamel camp mug</p>
+                </article>
+                <article class="gear-card reveal">
+                    <div class="gear-swatch swatch-sand">
+                        <img src="assets/logo.png" alt="" loading="lazy">
+                        <span class="gear-tag">Coming soon</span>
+                    </div>
+                    <h3>OutThere Cap</h3>
+                    <p>Washed canvas patch cap</p>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-header">
-                <h2>OutThere Values</h2>
-                <div class="divider"></div>
+    <!-- Juanderer App -->
+    <section class="app" id="app">
+        <div class="container app-grid">
+            <div class="app-text reveal">
+                <p class="eyebrow">Made by OutThere</p>
+                <h2>Explore more.<br>Discover home.</h2>
+                <p>
+                    <strong>Juanderer</strong> is our travel passport for the Philippines. Mark every province you visit,
+                    keep a journal of your trips, and collect stamps and badges on the way to all 82.
+                </p>
+                <ul class="app-features">
+                    <li><i class="fas fa-map-location-dot" aria-hidden="true"></i><span><strong>Mark</strong> visits with a date and a note</span></li>
+                    <li><i class="fas fa-book-open" aria-hidden="true"></i><span><strong>Journal</strong> trips with notes and photos</span></li>
+                    <li><i class="fas fa-stamp" aria-hidden="true"></i><span><strong>Collect</strong> a stamp for every province and 80+ badges</span></li>
+                    <li><i class="fas fa-signal" aria-hidden="true"></i><span><strong>No signal needed</strong>&mdash;the whole map works offline</span></li>
+                    <li><i class="fas fa-lock" aria-hidden="true"></i><span><strong>No sign-up, no ads</strong>&mdash;your trips stay on your phone</span></li>
+                </ul>
+                <div class="app-actions">
+                    <a href="https://juandererph.vercel.app/" class="btn btn-primary" target="_blank" rel="noopener">
+                        Get Juanderer <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                    <span class="app-note">Beta on Android &amp; iPhone</span>
+                </div>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                        <img src="assets/icons/mountain.png" alt="Exploration" class="feature-icon">
-                    <h3>EXPLORATION</h3>
-                    <p>Seek more. Wander often. Discover the world on your own terms with curated destinations and authentic experiences.</p>
-                </div>
-                <div class="feature-card">
-                    <img src="assets/icons/arrows.png" alt="Freedom" class="feature-icon">
-                    <h3>FREEDOM</h3>
-                    <p>Live outside ordinary. Break free from standard travel paths and create your own adventure story.</p>
-                </div>
-               
-                <div class="feature-card">
-                    <img src="assets/icons/water-waves.png" alt="Connection" class="feature-icon">
-                    <h3>CONNECTION</h3>
-                    <p>Nurture bonds with people and places that matter. Build lasting relationships through shared adventures.</p>
-                </div>
-            </div>
+            <a class="app-visual reveal" href="https://juandererph.vercel.app/" target="_blank" rel="noopener" aria-label="Visit the Juanderer app website">
+                <img src="assets/juanderer/juanderer-icon.png" alt="" class="app-icon" width="340" height="400">
+                <img src="assets/juanderer/juanderer-logo-dark.png" alt="Juanderer" class="app-wordmark wordmark-dark" width="600" height="184">
+                <img src="assets/juanderer/juanderer-logo-light.png" alt="Juanderer" class="app-wordmark wordmark-light" width="600" height="121">
+            </a>
         </div>
     </section>
 
-    <!-- Call-to-Action Section -->
-    <section class="cta-section" id="cta">
-        <div class="cta-content">
-            <h2>Ready for Your Next Adventure?</h2>
-            <p>Join thousands of explorers discovering the world on their own terms</p>
-            <button class="btn btn-secondary">Join Outthere</button>
+    <!-- Community -->
+    <section class="community" id="community">
+        <div class="container community-grid">
+            <div class="community-text">
+                <p class="eyebrow">Community</p>
+                <h2>Real people.<br>Real adventures.</h2>
+                <p>Follow the journey. Tag <strong>#FurtherThanComfort</strong></p>
+                <a href="https://www.facebook.com/profile.php?id=61587238439117" class="btn btn-outline" target="_blank" rel="noopener">
+                    <i class="fab fa-facebook-f"></i> Follow OutThere
+                </a>
+            </div>
+            <div class="community-tiles">
+                <div class="tile reveal">
+                    <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&q=80" alt="Campsite at dusk" loading="lazy">
+                </div>
+                <div class="tile tile-type reveal">
+                    <span>Not all<br>who wander<br>are lost.</span>
+                    <img src="assets/logo.png" alt="" class="tile-mark">
+                </div>
+                <div class="tile reveal">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500&q=80" alt="Lake framed by mountains" loading="lazy">
+                </div>
+                  <div class="tile tile-type tile-orange reveal">
+                    <span>Go out.<br><em>Go beyond.</em></span>
+                    <img src="assets/logo.png" alt="" class="tile-mark">
+                </div>
+                <div class="tile reveal">
+                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=500&q=80" alt="Open road through the mountains" loading="lazy">
+                </div>
+    
+            </div>
         </div>
     </section>
-
-
-
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <img src="assets/logo.png" alt="Outthere Logo" class="logo-image-small">
-                    <span>OutThere</span>
+                    <img src="assets/logo.png" alt="" class="logo-image-small">
+                    <span class="logo-lockup">
+                        <span class="logo-text">OutThere</span>
+                        <span class="logo-tagline">Further than comfort.</span>
+                    </span>
                 </div>
-                <p>Further than comfort</p>
+                <p>We inspire and equip adventurers to go further&mdash;beyond comfort, beyond limits.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/profile.php?id=61587238439117" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                </div>
             </div>
-            <div class="footer-social">
-                <a href="https://www.facebook.com/profile.php?id=61587238439117" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <a href="#about">Our Why</a>
+                <a href="#values">Values</a>
+                <a href="#community">Community</a>
+                <a href="https://juandererph.vercel.app/" target="_blank" rel="noopener">Juanderer App</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#about">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="footer-links">
-                <a href="privacy.html">Privacy Policy</a>
-            </div>
             <p>&copy; 2026 OutThere. All rights reserved.</p>
+            <span class="footer-url">Go out. Go beyond.</span>
         </div>
     </footer>
 

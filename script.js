@@ -1,132 +1,134 @@
 // ============================================
+// Light / Dark Theme
+// ============================================
+const themeToggle = document.getElementById('themeToggle');
+const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+const systemLight = window.matchMedia('(prefers-color-scheme: light)');
+
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (themeToggle) {
+        themeToggle.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+    }
+    if (themeColorMeta) {
+        themeColorMeta.setAttribute('content', theme === 'light' ? '#E8E2D5' : '#1A1A1A');
+    }
+}
+
+function savedTheme() {
+    try {
+        return localStorage.getItem('theme');
+    } catch (e) {
+        return null;
+    }
+}
+
+applyTheme(document.documentElement.getAttribute('data-theme') || 'dark');
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        applyTheme(next);
+        try {
+            localStorage.setItem('theme', next);
+        } catch (e) {}
+    });
+}
+
+// Follow system changes until the visitor picks a theme themselves
+systemLight.addEventListener('change', (e) => {
+    if (!savedTheme()) {
+        applyTheme(e.matches ? 'light' : 'dark');
+    }
+});
+
+// ============================================
 // Mobile Menu Toggle
 // ============================================
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 
-if (hamburger) {
+function setMenu(open) {
+    navMenu.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+
+if (hamburger && navMenu) {
     hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        toggleHamburgerAnimation();
-    });
-}
-
-function toggleHamburgerAnimation() {
-    const spans = hamburger.querySelectorAll('span');
-    spans.forEach(span => {
-        span.style.transition = 'all 0.3s ease';
+        setMenu(!navMenu.classList.contains('active'));
     });
 
-    if (navMenu.classList.contains('active')) {
-        spans[0].style.transform = 'rotate(45deg) translate(8px, 8px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translate(8px, -8px)';
-    } else {
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-    }
-}
-
-// Close menu on link click
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        const spans = hamburger.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
+    // Close menu on link click
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => setMenu(false));
     });
-});
 
-// ============================================
-// Smooth Scroll to Section
-// ============================================
-function scrollToSection(sectionId) {
-    const element = document.getElementById(sectionId);
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-// ============================================
-// Navigation Link Scroll Behavior
-// ============================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href !== '#' && document.querySelector(href)) {
-            e.preventDefault();
-            const targetId = href.slice(1);
-            scrollToSection(targetId);
+    // Close menu with Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            setMenu(false);
+            hamburger.focus();
         }
     });
-});
+}
 
 // ============================================
 // Navbar Background on Scroll
 // ============================================
-const navbar = document.querySelector('.navbar');
-let lastScrollY = 0;
+const navbar = document.querySelector('.navbar-overlay');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.boxShadow = 'none';
-    }
-    lastScrollY = window.scrollY;
-});
+if (navbar) {
+    const updateNavbar = () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 40 || navMenu.classList.contains('active'));
+    };
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    hamburger.addEventListener('click', updateNavbar);
+    updateNavbar();
+}
 
 // ============================================
-// Intersection Observer for Animations
+// Active Nav Link While Scrolling
 // ============================================
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+const sections = [...navLinks]
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target);
-        }
+if ('IntersectionObserver' in window && sections.length) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+                });
+            }
+        });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+
+    sections.forEach(section => sectionObserver.observe(section));
+}
+
+// ============================================
+// Scroll Reveal
+// ============================================
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if ('IntersectionObserver' in window && !reduceMotion) {
+    document.documentElement.classList.add('js');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+        // Stagger siblings slightly so rows animate in sequence
+        el.style.transitionDelay = `${(i % 5) * 80}ms`;
+        revealObserver.observe(el);
     });
-}, observerOptions);
-
-// Observe feature cards for scroll animation
-document.querySelectorAll('.feature-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'all 0.6s ease';
-    observer.observe(card);
-});
-
-// ============================================
-// Keyboard Navigation
-// ============================================
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-        navMenu.classList.remove('active');
-        const spans = hamburger.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-    }
-});
-
-// ============================================
-// Scroll to Top on Load
-// ============================================
-window.addEventListener('load', () => {
-    window.scrollTo(0, 0);
-});
-
-// ============================================
-// Initialize
-// ============================================
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Outthere Premium - Further than Comfort');
-});
+}

@@ -4,14 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Privacy Policy for OutThere. Learn how OutThere handles personal information, third-party services, cookies, and privacy requests.">
-    <meta name="theme-color" content="#1E3A2F">
+    <meta name="theme-color" content="#1A1A1A">
     <meta property="og:title" content="Privacy Policy | OutThere">
     <meta property="og:description" content="How OutThere handles personal information and privacy requests.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Apply saved or system theme before first paint to avoid a flash
+        (function () {
+            var saved = null;
+            try { saved = localStorage.getItem('theme'); } catch (e) {}
+            var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
     <title>Privacy Policy | OutThere</title>
@@ -20,18 +31,29 @@
     <nav class="navbar">
         <div class="nav-wrapper">
             <a class="logo" href="index.html" aria-label="OutThere home">
-                <img src="assets/logo.png" alt="Outthere Logo" class="logo-image">
-                <span class="logo-text">OutThere</span>
+                <img src="assets/logo.png" alt="" class="logo-image">
+                <span class="logo-lockup">
+                    <span class="logo-text">OutThere</span>
+                    <span class="logo-tagline">Further than comfort.</span>
+                </span>
             </a>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#cta">Get Started</a></li>
+                <li><a href="index.html#values">Values</a></li>
+                <li><a href="index.html#app">App</a></li>
+                <li><a href="index.html#community">Community</a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=61587238439117" target="_blank" rel="noopener" class="nav-cta">Join</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode">
+                    <i class="fas fa-sun" aria-hidden="true"></i>
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
+                <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
@@ -133,20 +155,33 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <img src="assets/logo.png" alt="Outthere Logo" class="logo-image-small">
-                    <span>OutThere</span>
+                    <img src="assets/logo.png" alt="" class="logo-image-small">
+                    <span class="logo-lockup">
+                        <span class="logo-text">OutThere</span>
+                        <span class="logo-tagline">Further than comfort.</span>
+                    </span>
                 </div>
-                <p>Further than comfort</p>
+                <p>We inspire and equip adventurers to go further&mdash;beyond comfort, beyond limits.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/profile.php?id=61587238439117" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                </div>
             </div>
-            <div class="footer-social">
-                <a href="https://www.facebook.com/profile.php?id=61587238439117" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <a href="index.html#about">Our Why</a>
+                <a href="index.html#values">Values</a>
+                <a href="index.html#community">Community</a>
+                <a href="https://juandererph.vercel.app/" target="_blank" rel="noopener">Juanderer App</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="index.html#about">About Us</a>
+                <a href="privacy.html" aria-current="page">Privacy Policy</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="footer-links">
-                <a href="privacy.html" aria-current="page">Privacy Policy</a>
-            </div>
             <p>&copy; 2026 OutThere. All rights reserved.</p>
+            <span class="footer-url">Go out. Go beyond.</span>
         </div>
     </footer>
 
